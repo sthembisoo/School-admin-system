@@ -1,0 +1,146 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow
+        overflow-hidden" [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+        <p class="text-lg font-medium">{{this.header}}</p>
+
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <div class="flex flex-col gt-xs:flex-row">
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pr-3">
+                        <mat-label>Name</mat-label>
+                        <input formControlName="name" matInput>
+                        <mat-icon
+                            class="icon-size-5"
+                            matSuffix
+                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        <div *ngIf="submitted && f.name.errors"
+                            class="invalid-feedback">
+                            <mat-error *ngIf="f.name.errors.required">staff name
+                                is
+                                required</mat-error>
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pr-3">
+                        <mat-label>Surname</mat-label>
+                        <input formControlName="surname" matInput>
+                        <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        <div *ngIf="submitted && f.surname.errors"
+                            class="invalid-feedback">
+                            <mat-error *ngIf="f.surname.errors.required">staff
+                                surname
+                                is required</mat-error>
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pl-3">
+                        <mat-label>Contact Number</mat-label>
+                        <input type="tel" formControlName="contact_Number"
+                            matInput>
+                        <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                        <div *ngIf="submitted && f.contact_Number.errors"
+                            class="invalid-feedback">
+                            <mat-error *ngIf="f.contact_Number.errors.required">contact
+                                Number is required</mat-error>
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pl-3">
+                        <mat-label>Email Address</mat-label>
+                        <input formControlName="email_address" matInput>
+                        <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                        <mat-icon
+                            class="icon-size-5"
+                            matSuffix
+                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        <div *ngIf="submitted && f.email_address.errors"
+                            class="invalid-feedback">
+                            <mat-error *ngIf="f.email_address.errors.required">email
+                                address is required</mat-error>
+                        </div>
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- ... -->
+            <div>
+                <div class="flex flex-col gt-xs:flex-row">
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="fuse-mat-textarea flex-auto">
+                        <mat-label>Postal Address</mat-label>
+                        <input formControlName="postal_Address" matInput>
+                        <mat-icon
+                            class="icon-size-5"
+                            matSuffix
+                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                        <div *ngIf="submitted && f.postal_Address.errors"
+                            class="invalid-feedback">
+                            <mat-error *ngIf="f.postal_Address.errors.required">postal_Address
+                                is required</mat-error>
+                        </div>
+                    </mat-form-field>
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-md:pr-3">
+                        <mat-label>Role Description</mat-label>
+                        <!-- <input matInput formControlName="eventType" > -->
+                        <mat-select formControlName="RoleDescription">
+                            <mat-option value="Teacher">Teacher</mat-option>
+                            <mat-option value="Administrator">Admininstrator</mat-option>
+                            <mat-option value="Assistant">Assistant</mat-option>
+                        </mat-select>
+                        <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:key'"></mat-icon>
+                    </mat-form-field>
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pl-3">
+                        <mat-label>Employment Date</mat-label>
+                        <input type="date" formControlName="employment_Date"
+                            matInput>
+                        <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:calender'"></mat-icon>
+
+                        <div *ngIf="submitted && f.employment_Date.errors"
+                            class="invalid-feedback">
+                            <mat-error
+                                *ngIf="f.employment_Date.errors.required">employment_Date
+                                is required</mat-error>
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-md:pl-3">
+                        <mat-label>Qualification</mat-label>
+                        <input formControlName="qualification" matInput>
+                        <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:document-text'"></mat-icon>
+                        <div *ngIf="submitted && f.qualification.errors"
+                            class="invalid-feedback">
+                            <mat-error *ngIf="f.qualification.errors.required">qualification
+                                is required</mat-error>
+                        </div>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gt-md:flex-row">
+
+
+
+            <button
+                mat-flat-button
+                [color]="'primary'"
+                [disabled]="!staffForm.valid">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+.toast {
+  margin: 18px;
+  transition: all 0.05s ease-out;
+  width: 300px !important;
+  z-index: 101;
+}
+
+.toast.toast-success {
+  background-color: #1a7d22
+  ;
+}
+
+.toast.toast-error {
+  background-color: #dc2626;
+}
+
+.toast.toast-warn {
+  background-color: #ffd500;
+}
+
+.toast.pre-wrap {
+  white-space: pre-wrap;
+}
+
+
+::ng-deep .ngb-toasts {
+  position: fixed;
+  top: auto!important;
+  bottom: 0!important;
+  right: 0!important;
+  left: auto!important;
+  margin: 0.5em;
+}

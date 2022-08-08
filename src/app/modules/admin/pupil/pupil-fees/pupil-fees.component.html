@@ -1,0 +1,131 @@
+<div class="flex flex-col flex-auto min-w-0">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-4 sm:py-4 sm:px-10 border-b bg-card dark:bg-transparent">
+    <div class="flex items-center ml-6">
+        <button class="hidden sm:inline-flex" (click)="back()">
+            <span class="ml-2"
+                ><img
+                    src="https://img.icons8.com/fluency/48/000000/back.png"
+            /></span>
+        </button>
+
+        <!-- Actions menu (visible on xs) -->
+    </div>
+      <div class="flex-1 min-w-0">
+          <!-- Title -->
+          <div class="mt-2">
+              <h2 class="text-lg md:text-3xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                  Pupil Personal Information
+              </h2>
+          </div>
+      </div>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="downloadAsPDF()">
+        Download 
+      </button>
+  </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6">
+        <app-loader *ngIf="fees == null; else loader"></app-loader>
+
+        <div class="max-w-full">
+    
+            <ng-template #loader id="fees">
+                <!-- Table Header -->
+                      <div class="invoice-box">
+                        <div class="container">
+                          <div class="row">
+                            <div class="equalHWrap eqWrap top">
+                              <div class="equalHW eq center logo-block">
+                                <a href=""><img src="assets/images/logo/logo.svg" style="width:100%; max-width:55px;"></a>
+                              </div>
+                              <div class="equalHW eq contact-info-block">
+                                <span id="AccountEmail">support@advisory.as</span><br>
+                                <span id="AccountPhone">047 226 47 280</span>
+                              </div>
+                              <div class="equalHW eq title-block">
+                                <h2 class="right no-padding" id="InvoiceSumExVat" style="margin:0px;">STUDENT FEES</h2>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-top:20px;">
+                              <div class="equalHWrap eqWrap nomargin-nopadding to-block">
+                                <div class="equalHW eq nomargin-nopadding title">
+                                  Til
+                                </div>
+                                <div class="equalHW eq nomargin-nopadding title from-block">
+                                  Fra
+                                </div>
+                                <div class="equalHW eq nomargin-nopadding title info-block">
+                                  Fields<span class="right">#<span id="InvoiceNumber">99993</span></span><br>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="equalHWrap eqWrap">
+                                  <div class="equalHW eq infoblock to-block">
+                                    <span id="CustomerName">9tsbaby DA</span><br>
+                                    <span id="AccountProject">CustomerOrgNr</span><br>
+                                    <span id="CustomerAddress">Ekraveien 14</span><br>
+            
+                                  </div>
+                                  <div class="equalHW eq infoblock from-block">
+                                    <span id="AccountName">Advisory AS</span><br>
+                                    <span id="AccountProject">AccountOrgNr</span><br>
+                                    <span id="AccountAddress">Suppeveien 14</span><br>
+
+                                  </div>
+                                  <div class="equalHW eq infoblock info-block">
+                                    <span id="">Payment Type:</span> <span class="right" id="CreatedDate">{{fees.PaymentType}}</span><br>
+                                    <span id="">Date</span>: <span class="right" id="DueDate">{{currentDate | date}}</span><br>
+                                    <span id="">Kid</span>: <span class="right" id="KidNumber">0000374334</span><br>
+                                  </div>
+                                </div>
+                              </div>
+                              <table class="table">
+                                <tr class="titles">
+                                  <th>Fee type</th>
+                    
+                                  <th class="right">Amount</th>
+                                </tr>
+                                <tr class="item" id="ProductList">
+                                  <td id="Product"><span id="ProuductName">After Care<span></span></span></td>
+            
+                                  <td class="right"><span id="ProductCost">R {{fees.AfterCare}}</span></td>
+                                </tr>
+                                <tr class="item">
+                                  <td ><span id="ProuductName"><span>New Learner Fee</span></span></td>
+                                  <td class="right"><span id="ProductCost">R {{fees.NewLearnerFee}}</span></td>
+                                </tr>
+                                <tr class="item">
+                                  <td ><span id="ProuductName">Stationar And Workbook Fee<span></span></span></td>
+    
+                                  <td class="right"><span id="ProductCost">R {{fees.StationaryAndWorkbookFee}}</span></td>
+                                </tr>
+                                <tr class="item">
+                                  <td><span id="ProuductName">Year Fee<span></span></span></td>
+                                  <td class="right"><span id="ProductCost">R {{fees.YearFee}}</span></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div class="row">
+                              <div class="equalHWrap eqWrap">
+                                <div class="equalHW eq">
+                                  <table class="right">
+                                    <tr>
+                                      <td><span style="display:inline-block;margin-right:10px;"><strong>Total Outstanding Fees:</strong></span></td>
+                                      <td><span id="InvoceTotalVat">R</span> <span id="InvoiceCurrency1">{{Sum()}}</span><br></td>
+                                    </tr>
+
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                <!-- /Table Body -->
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+

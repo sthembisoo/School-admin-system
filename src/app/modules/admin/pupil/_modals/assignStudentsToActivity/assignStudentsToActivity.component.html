@@ -1,0 +1,38 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+  <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" >
+    <p class="text-lg font-large">Assign Learners to Activity</p>
+    <br>
+    <div class="flex flex-col gt-xs:flex-row">
+  <mat-form-field color="accent"  class="flex-auto gt-xs:pr-3"  >
+    <mat-select [formControl]="pupilMultiCtrl" placeholder="Banks" [multiple]="true" #multiSelect class="text-white bg-blue-00 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-900 font-medium rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center dark:bg-white-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <mat-option>
+        <ngx-mat-select-search [showToggleAllCheckbox]="true"
+                               [toggleAllCheckboxIndeterminate]="isIndeterminate"
+                               [toggleAllCheckboxChecked]="isChecked"
+                               (toggleAll)="toggleSelectAll($event)"
+                               [formControl]="pupilMultiFilterCtrl"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let pupil of filteredPupilMulti | async" [value]="pupil">
+        {{pupil.Name}} {{pupil.Surname}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <div class="flex flex-col gt-xs:flex-row  pb-4 bg-card  ">
+
+<p>
+  Selected Learners:
+</p>
+
+<ul  *ngFor="let bank of pupilMultiCtrl?.value" class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+  <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">{{bank.Name}} {{bank.Surname}}</li>
+
+</ul>
+</div>
+<button
+mat-flat-button
+[color]="'primary'"
+[disabled]="pupilMultiCtrl?.value === null" (click)="addStudentToActivity()">
+Assign
+</button>
+</form>

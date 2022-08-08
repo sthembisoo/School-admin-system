@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "deepmind-370": {
+      "hosting": {
+        "fuse": [
+          "deepmind-370"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "deepmind-370"
+  }
+}

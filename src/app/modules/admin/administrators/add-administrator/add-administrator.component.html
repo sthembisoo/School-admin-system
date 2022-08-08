@@ -1,0 +1,49 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"  [formGroup]="administratorForm" (ngSubmit)="onSubmit()">
+      <p class="text-lg font-medium">{{this.header}}</p>
+      <div class="flex flex-col gt-xs:flex-row">
+          <mat-form-field
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-md:pr-3">
+          <mat-label>Staff Name</mat-label>
+          <input formControlName="name" matInput>
+      </mat-form-field>
+          <mat-form-field
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-xs:pr-3">
+          <mat-label>Role description:</mat-label>
+          <input formControlName="RoleDescription" matInput>
+              <div *ngIf="submitted && f.RoleDescription.errors" class="invalid-feedback">
+                <mat-error  *ngIf="f.RoleDescription.errors.required">Role Description is required</mat-error>
+            </div>
+      </mat-form-field>
+      </div>
+      <mat-form-field
+      [ngClass]="formFieldHelpers"
+      class="flex-auto gt-xs:pl-3">
+      <mat-label>Date Created</mat-label>
+      <input type="date"  formControlName="date" matInput>
+          <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+            <mat-error  *ngIf="f.date.errors.required">date is required</mat-error>
+        </div>
+  </mat-form-field>
+      <div class="flex flex-col gt-md:flex-row">
+          <mat-form-field
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-md:pr-3">
+          <mat-label>User Authority</mat-label>
+          <!-- <input matInput formControlName="eventType" > -->
+          <mat-select formControlName="userAuth" multiple>
+            <!-- <mat-option>None</mat-option> -->
+            <mat-option *ngFor="let authority of displayedAuth" [value]="authority">{{authority.title}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+          <button
+          mat-flat-button
+          [color]="'primary'"
+        [disabled]="!administratorForm.valid" >
+          Save
+      </button>
+      </div>
+  </form>
+    </div>

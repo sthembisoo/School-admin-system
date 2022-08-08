@@ -1,0 +1,29 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+  <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"  [formGroup]="eventIncomeForm" (ngSubmit)="onSubmit()">
+    <p class="text-lg font-medium">Update Event income</p>
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field
+            [ngClass]="formFieldHelpers"
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Amount</mat-label>
+            <input formControlName="amount" placeholder="R500" matInput>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+
+                <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                  <mat-error  *ngIf="f.amount.errors.required">Event Amount is required</mat-error>
+              </div>
+        </mat-form-field>
+    </div>
+
+        <button
+        mat-flat-button
+        [color]="'primary'"
+        [disabled]="!eventIncomeForm.valid">
+        Save
+    </button>
+
+</form>
+</div>

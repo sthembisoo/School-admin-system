@@ -1,0 +1,590 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+    <div class="flex items-center ml-6">
+        <button class="hidden sm:inline-flex" (click)="back()">
+            <span class="ml-2"
+                ><img
+                    src="https://img.icons8.com/fluency/48/000000/back.png"
+            /></span>
+        </button>
+
+        <!-- Actions menu (visible on xs) -->
+    </div>
+      <div class="flex-1 min-w-0">
+          <!-- Title -->
+          <div class="mt-2">
+              <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                  Pupil Personal Information
+              </h2>
+          </div>
+      </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto p-6 sm:p-10">
+
+      <div class="max-w-full">
+
+
+          <form class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden"  [formGroup]="editPupilForm" (ngSubmit)="onSubmit()">
+            <mat-accordion class="example-headers-align" >
+              <mat-expansion-panel [expanded]="step === 0"  [formGroupName]="'pupil'" (opened)="setStep(0)" hideToggle class="bg-blue-100 text-accent-400">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-lg">
+                   Pupil
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <mat-icon>account_circle</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Name'"
+                          [placeholder]="'name'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Surname'"
+                          [placeholder]="'surname'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Home_Language'"
+                          [placeholder]="'homeLanguage'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:speakerphone'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex flex-col gt-xs:flex-row">
+                  <mat-form-field class="flex-auto gt-xs:pr-3">
+                      <mat-select
+                          [formControlName]="'Pupil_Type_ID'"
+                          [placeholder]="'Pupil Type'"
+                          required
+                      >
+                          <mat-option
+                              *ngFor="let types of pupilTypes"
+                              [value]="types.id"
+                              >{{
+                                  types.Pupil_Type_Description
+                              }}</mat-option
+                          >
+                      </mat-select>
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user'"
+                      ></mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="flex-auto gt-xs:pl-3">
+                      <mat-select
+                          [formControlName]="'Gender_ID'"
+                          [placeholder]="'Gender'"
+                          required
+                      >
+                          <mat-option value="1">Male</mat-option>
+                          <mat-option value="2">Female</mat-option>
+                          <mat-option value="3"
+                              >Do not want to specify</mat-option
+                          >
+                      </mat-select>
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Previous_School'"
+                          [placeholder]="'previousSchool'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:receipt-refund'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+
+              <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Physical_Address'"
+                          [placeholder]="'physicalAddress'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:home'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Postal_Address'"
+                          [placeholder]="'postalAddress'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:home'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+
+                <mat-action-row>
+                  <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel [expanded]="step === 1"  [formGroupName]="'parent'" (opened)="setStep(1)"  class="bg-red-100 text-accent-400" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-lg">
+                    Parent Information
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <mat-icon>account_circle</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flex flex-col gt-xs:flex-row">
+                  <mat-form-field class="flex-auto gt-xs:pr-3">
+                      <input
+                          matInput
+                          [formControlName]="'Name'"
+
+                          [placeholder]="'First name'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="flex-auto gt-xs:pl-3">
+                      <input
+                          matInput
+                          [formControlName]="'Surname'"
+                          [placeholder]="'Last name'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex">
+                  <mat-form-field class="flex-auto">
+                      <input
+                          matInput
+                          [formControlName]="'Email_Address'"
+                          [placeholder]="'email'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex flex-col gt-xs:flex-row">
+                  <mat-form-field class="flex-auto gt-xs:pr-3">
+                      <input
+                          matInput
+                          [formControlName]="'Contact_Number'"
+                          [placeholder]="'Contact Number'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="flex-auto gt-xs:pl-3">
+                      <input
+                          matInput
+                          [formControlName]="'Home_Contact_Number'"
+                          [placeholder]="'Home Telephone'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+              <div class="flex flex-col gt-xs:flex-row">
+                  <mat-form-field class="flex-auto gt-xs:pr-3">
+                      <input
+                          matInput
+                          [formControlName]="'Work_Contact_Number'"
+                          [placeholder]="'Work Telephone'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="flex-auto gt-xs:pl-3">
+                      <input
+                          matInput
+                          [formControlName]="'Carreer'"
+                          [placeholder]="'Career'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+
+              <div class="flex flex-col gt-xs:flex-row">
+                  <mat-form-field class="flex-auto gt-xs:pr-3">
+                      <input
+                          matInput
+                          [formControlName]="'Employer'"
+                          [placeholder]="'Employer'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="flex-auto gt-xs:pl-3">
+                      <input
+                          matInput
+                          type="number"
+                          [formControlName]="'ID_Number'"
+                          [placeholder]="'ID Number'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+
+              <div class="flex flex-col gt-xs:flex-row">
+                  <mat-form-field class="flex-auto gt-xs:pr-3">
+                      <mat-select
+                          [formControlName]="'Parent_Type_ID'"
+                          [placeholder]="'Parent Type'"
+                          required
+                      >
+                          <mat-option
+                              *ngFor="let types of parentTypes"
+                              [value]="types.id"
+                              >{{
+                                  types.Parent_Type_Description
+                              }}</mat-option
+                          >
+                      </mat-select>
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="
+                              'heroicons_solid:location-marker'
+                          "
+                      ></mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="flex-auto gt-xs:pl-3">
+                      <input
+                          matInput
+                          [formControlName]="'Address'"
+                          [placeholder]="'Home Address'"
+                          required
+                      />
+                      <mat-icon
+                          class="icon-size-5"
+                          matPrefix
+                          [svgIcon]="'heroicons_solid:user-circle'"
+                      ></mat-icon>
+                  </mat-form-field>
+              </div>
+
+
+                <mat-action-row>
+                  <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                  <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel [expanded]="step === 2"       [formGroupName]="'emergencyContact'" (opened)="setStep(2)" class="bg-red-100 text-accent-400" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-lg">
+                    Emergency Contact
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <mat-icon>date_range</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                    <div class="flex flex-col gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <input
+                                matInput
+                                [formControlName]="'Name'"
+                                [placeholder]="'First name'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <input
+                                matInput
+                                [formControlName]="'Surname'"
+                                [placeholder]="'Last name'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <input
+                                matInput
+                                [formControlName]="'Relationship_To_Pupil'"
+                                [placeholder]="'Relationship'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <input
+                                matInput
+                                [formControlName]="'Contact_Number'"
+                                [placeholder]="'Contact Number'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <input
+                                matInput
+                                [formControlName]="'Career'"
+                                [placeholder]="'Career'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <input
+                                matInput
+                                [formControlName]="'Physical_Address'"
+                                [placeholder]="'Physical Address'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                <mat-action-row>
+                  <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                  </mat-action-row>
+                </mat-action-row>
+              </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="step === 3"       [formGroupName]="'medicalDetails'" (opened)="setStep(3)" class="bg-red-100 text-accent-400" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-lg">
+                    Medical Details
+                  </mat-panel-title>
+                  <mat-panel-description >
+                    <mat-icon position="start">date_range</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                    <div class="flex flex-col gt-xs:flex-row">
+                      <mat-form-field class="flex-auto gt-xs:pr-3">
+                          <input
+                              matInput
+                              [formControlName]="'Condition_Description'"
+                              [placeholder]="'Condition Description'"
+                              required
+                          />
+                          <mat-icon
+                              class="icon-size-5"
+                              matPrefix
+                              [svgIcon]="'heroicons_solid:user-circle'"
+                          ></mat-icon>
+                      </mat-form-field>
+                      <mat-form-field class="flex-auto gt-xs:pl-3">
+                          <input
+                              matInput
+                              [formControlName]="'Treatment_C'"
+                              [placeholder]="'Treatment Description'"
+                              required
+                          />
+                          <mat-icon
+                              class="icon-size-5"
+                              matPrefix
+                              [svgIcon]="'heroicons_solid:user-circle'"
+                          ></mat-icon>
+                      </mat-form-field>
+                  </div>
+                  <div class="flex flex-col gt-xs:flex-row">
+                      <mat-form-field class="flex-auto gt-xs:pr-3">
+                          <input
+                              matInput
+                              [formControlName]="'Allergy_Description'"
+                              [placeholder]="'Allergies'"
+                              required
+                          />
+                          <mat-icon
+                              class="icon-size-5"
+                              matPrefix
+                              [svgIcon]="'heroicons_solid:user-circle'"
+                          ></mat-icon>
+                      </mat-form-field>
+                      <mat-form-field class="flex-auto gt-xs:pl-3">
+                          <input
+                              matInput
+                              [formControlName]="'Treatment_A'"
+                              [placeholder]="'Allergies Treatment'"
+                              required
+                          />
+                          <mat-icon
+                              class="icon-size-5"
+                              matPrefix
+                              [svgIcon]="'heroicons_solid:user-circle'"
+                          ></mat-icon>
+                      </mat-form-field>
+                  </div>
+
+                  <div class="flex flex-col gt-xs:flex-row">
+                      <mat-form-field class="flex-auto gt-xs:pr-3">
+                          <input
+                              matInput
+                              [formControlName]="'medicalAidName'"
+                              [placeholder]="'MedicalAid Name'"
+                              required
+                          />
+                          <mat-icon
+                              class="icon-size-5"
+                              matPrefix
+                              [svgIcon]="'heroicons_solid:user-circle'"
+                          ></mat-icon>
+                      </mat-form-field>
+                      <mat-form-field class="flex-auto gt-xs:pl-3">
+                          <input
+                              matInput
+                              [formControlName]="'medicalAidNumber'"
+                              [placeholder]="'medicalAid Number'"
+                              type="number"
+                              required
+                          />
+                          <mat-icon
+                              class="icon-size-5"
+                              matPrefix
+                              [svgIcon]="'heroicons_solid:user-circle'"
+                          ></mat-icon>
+                      </mat-form-field>
+                  </div>
+
+                <mat-action-row>
+                  <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">End</button>
+                  </mat-action-row>
+                </mat-action-row>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+
+
+              <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
+                  <button mat-button>
+                      Cancel
+                  </button>
+                  <button
+                      class="px-6 ml-3"
+                      mat-flat-button
+                      [color]="'primary'">
+                      Save
+                  </button>
+              </div>
+          </form>
+
+
+
+
+          </div>
+          </div>
+      </div>

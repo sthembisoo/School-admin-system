@@ -1,0 +1,17 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+// regular style toast
+@import '~ngx-toastr/toastr';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.app-toasts {
+    margin: 0.5em;
+    position: fixed;
+    right: 0;
+    top: -2;
+    z-index: 1200;
+    color: white;
+  }
+  

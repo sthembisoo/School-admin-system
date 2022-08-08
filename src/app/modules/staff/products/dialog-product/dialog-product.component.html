@@ -1,0 +1,31 @@
+<!-- <h1 mat-dialog-title>Delete file</h1>
+<div mat-dialog-content>
+  Would you like to delete cat.jpeg?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close mat-raised-button color="primary" cdkFocusInitial
+ (click)="Agree()" >Yes</button>
+</div> -->
+
+<div *ngIf="hide">
+<mat-dialog-content>
+	<p>
+		{{message}}
+	</p>
+	<br>
+	<input type="number" style=" border: red" [(ngModel)]="Quantity" matInput>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+	<button mat-raised-button color="primary"  (click)="Agree()"  [disabled]="!Quantity"  tabindex="1">Save</button>
+	<button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
+</mat-dialog-actions>
+</div>
+
+<div *ngIf="Show">
+<h2 mat-dialog-title>Error</h2>
+<mat-dialog-content class="error">Quantity requested is more than available stock</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Ok</button>
+</mat-dialog-actions>
+</div>

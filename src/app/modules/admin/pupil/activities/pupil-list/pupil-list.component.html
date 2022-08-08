@@ -1,0 +1,144 @@
+<div class="flex flex-col flex-auto w-full">
+
+  <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+    <div class="flex items-center justify-between w-full">
+      <div>
+          <h2 class="text-3xl font-semibold tracking-tight leading-8">Pupils In {{activityName}} Activity</h2>
+          <div class="font-medium tracking-tight text-secondary"></div>
+      </div>
+      <div class="flex items-center ml-6">
+        <button
+            class="hidden sm:inline-flex"
+            mat-stroked-button  (click)="assignStudentsToActivity()">
+            <mat-icon
+                class="icon-size-5"
+                [svgIcon]="'heroicons_solid:document-report'"></mat-icon>
+            <span class="ml-2">Assign Pupil</span>
+        </button>
+
+        <!-- Actions menu (visible on xs) -->
+        <div class="sm:hidden">
+            <button
+                [matMenuTriggerFor]="actionsMenu"
+                mat-icon-button>
+                <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+            </button>
+            <mat-menu #actionsMenu="matMenu">
+                <button (click)="assignStudentsToActivity()" mat-menu-item>Assign Pupil</button>
+            </mat-menu>
+        </div>
+    </div>
+  </div>
+  <br>
+    <div class="xl:col-span-2 flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto mx-6">
+          <table
+              class="w-full bg-transparent"
+              mat-table
+              matSort
+              [dataSource]="pupilDataSource"
+              [trackBy]="trackByFn"
+              #recentpupilTable>
+
+              <!-- Transaction ID -->
+              <ng-container matColumnDef="Name">
+                  <th
+                      mat-header-cell
+                      mat-sort-header
+                      *matHeaderCellDef>
+                      Name
+                  </th>
+                  <td
+                      mat-cell
+                      *matCellDef="let pupil">
+                      <span class="pr-6 font-medium text-sm text-secondary whitespace-nowrap">
+                          {{pupil.Name}}
+                      </span>
+                  </td>
+              </ng-container>
+
+              <!-- Date -->
+              <ng-container matColumnDef="Surname">
+                  <th
+                      mat-header-cell
+                      mat-sort-header
+                      *matHeaderCellDef>
+                      Surname
+                  </th>
+                  <td
+                      mat-cell
+                      *matCellDef="let pupil">
+                      <span class="pr-6 whitespace-nowrap">
+                          {{pupil.Surname}}
+                      </span>
+                  </td>
+              </ng-container>
+            <!-- Date -->
+            <ng-container matColumnDef="PupilType">
+              <th
+                  mat-header-cell
+                  mat-sort-header
+                  *matHeaderCellDef>
+                  Pupil Type
+              </th>
+              <td
+                  mat-cell
+                  *matCellDef="let pupil">
+                  <span class="pr-6 whitespace-nowrap">
+                      {{pupil.Type_Description}}
+
+                  </span>
+              </td>
+          </ng-container>
+
+    <!-- Amount -->
+    <ng-container matColumnDef="Actions">
+      <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef>
+          Actions
+      </th>
+      <td   mat-cell *matCellDef="let pupil">
+          <button
+              mat-icon-button
+              (click)="editPupil(pupil.Pupil_ID)">
+              <mat-icon [svgIcon]="'heroicons_outline:pencil'"></mat-icon>
+          </button>
+          <button
+              mat-icon-button
+              (click)="removePupil(pupil)">
+              <mat-icon [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+          </button>
+      </td>
+  </ng-container>
+
+
+              <!-- Footer -->
+              <ng-container matColumnDef="recentOrdersTableFooter">
+                  <td
+                      class="py-6 px-0 border-0"
+                      mat-footer-cell
+                      *matFooterCellDef
+                      colspan="6">
+                      <button mat-stroked-button>See all pupil</button>
+                  </td>
+              </ng-container>
+
+              <tr
+                  mat-header-row
+                  *matHeaderRowDef="pupilTableColumns"></tr>
+              <tr
+                  class="order-row h-16"
+                  mat-row
+                  *matRowDef="let row; columns: pupilTableColumns;"></tr>
+              <tr
+                  class="h-16 border-0"
+                  mat-footer-row
+                  *matFooterRowDef="['recentOrdersTableFooter']"></tr>
+          </table>
+      </div>
+  </div>
+
+</div>
+</div>

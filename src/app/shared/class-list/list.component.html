@@ -1,0 +1,33 @@
+<div class="flex items-start justify-between">
+    <div class="text-lg font-medium tracking-tight leading-6 truncate">
+        Class
+    </div>
+    <div class="ml-2 -mt-2 -mr-3">
+        <button mat-icon-button [matMenuTriggerFor]="summaryMenu">
+            <mat-icon
+                class="icon-size-5"
+                [svgIcon]="'heroicons_solid:dots-vertical'"
+            ></mat-icon>
+        </button>
+        <mat-menu #summaryMenu="matMenu">
+            <button mat-menu-item *ngIf="!isTeacher" [routerLink]="[class.id]" [queryParams]="{class: class.grade+class.Type   }">View Learners</button>
+            <button mat-menu-item *ngIf="!isTeacher"(click)="EditClass(class)" [queryParams]="{class: class.grade+class.Type   }">update</button>
+            <button mat-menu-item *ngIf="isTeacher" [routerLink]="[class.id]" [queryParams]="{class: class.grade+class.Type   }">Mark Register</button>
+            <button mat-menu-item *ngIf="isTeacher" [routerLink]="['register', class.id ]"  [queryParams]="{class: class.grade+class.Type   }" routerLinkActive="router-link-active" >View Register</button>
+
+            <!-- <button mat-menu-item>Remove</button> -->
+        </mat-menu>
+    </div>
+</div>
+<div class="flex flex-col items-center mt-2">
+    <div
+        class="text-7xl sm:text-8xl font-bold tracking-tight leading-none"
+        [ngClass]="color()"
+    >
+        {{ class.grade }}{{ class.Type }}
+    </div>
+    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+        <div class="text-md font-medium truncate">Learners:</div>
+        <div class="ml-1.5 text-lg font-semibold">9</div>
+    </div>
+</div>

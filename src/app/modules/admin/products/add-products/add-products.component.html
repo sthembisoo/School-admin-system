@@ -1,0 +1,72 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"  [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+      <p class="text-lg font-medium">{{this.header}}</p>
+      <div class="flex flex-col gt-xs:flex-row">
+          <mat-form-field
+              [ngClass]="formFieldHelpers"
+              class="flex-auto gt-xs:pr-3">
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput>
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <mat-error  *ngIf="f.name.errors.required">product name is required</mat-error>
+                </div>
+          </mat-form-field>
+
+      <mat-form-field
+      [ngClass]="formFieldHelpers"
+      class="flex-auto gt-md:pr-3">
+      <mat-label>Product type</mat-label>
+      <!-- <input matInput formControlName="eventType" > -->
+      <mat-select formControlName="Product_type"  >
+        <mat-option *ngFor="let product of producttype_data" [value]="product.name">{{product.name}}</mat-option>
+      </mat-select>
+  </mat-form-field>
+          <mat-form-field
+              [ngClass]="formFieldHelpers"
+              class="flex-auto gt-xs:pl-3">
+              <mat-label>Price</mat-label>
+              <input  type="number"  formControlName="price" matInput>
+                  <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <mat-error  *ngIf="f.price.errors.required">price is required</mat-error>
+                </div>
+          </mat-form-field>
+
+          <mat-form-field
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-xs:pl-3">
+          <mat-label>Quantity</mat-label>
+          <input type="number"   formControlName="quantity" matInput>
+          <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+            <mat-error  *ngIf="f.price.errors.required">price is required</mat-error>
+        </div>
+      </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field style="width: 100%;">
+            <mat-label>Upload Image</mat-label>
+            <button mat-icon-button matPrefix (click)="f_input.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+            <input type="text" readonly matInput  [formControl]="display" />
+            <input
+            formControlName="filename"
+              type="file"
+              accept="image/png, image/gif, image/jpeg"
+              hidden
+              #f_input
+              (change)="handleFileInputChange(f_input.files)"
+            />
+            <mat-error>this field is required</mat-error>
+          </mat-form-field>
+      </div>
+      <div class="flex flex-col gt-md:flex-row">
+          <button
+          mat-flat-button
+          [color]="'primary'"
+        [disabled]="!ProductForm.valid" >
+          Save
+      </button>
+      </div>
+  </form>
+    </div>
+

@@ -1,0 +1,140 @@
+
+<div class="flex flex-col flex-auto p-6 md:p-8" id="learnerInfo" #learnerInfo>
+
+        <!-- Header -->
+        <div class="relative w-full h-40 sm:h-48 px-8 sm:px-12 bg-accent-100 dark:bg-accent-700">
+            <!-- Background -->
+            <ng-container>
+                <img
+                    class="absolute inset-0 object-cover w-full h-full"
+                    src="../../../../../../assets/images/LEARNER_INFO_BANNER.png">
+            </ng-container>
+            <!-- Close button -->
+            <div class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6">
+                <button
+                    mat-icon-button
+                    [matTooltip]="'Close'"
+                   (click)=" back()">
+                    <mat-icon
+                        class="text-white"
+                        [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                </button>
+            </div>
+        </div>
+
+
+
+    <!-- Information -->
+    <div class="text-lg font-medium mt-8">Learner Information</div>
+    <div class="flex flex-col mt-4 border-t border-b divide-y font-medium">
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Name</div>
+            <div>{{learner.Name}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Surname</div>
+            <div>{{learner.Surname}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Home Language</div>
+            <div>{{learner.Home_Language}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Physical Address</div>
+            <div>{{learner.Physical_Address}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Postal Address</div>
+            <div>{{learner.Postal_Address}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Previous School</div>
+            <div>{{learner.Previous_School}}</div>
+        </div>
+    
+    </div>
+
+    <div class="text-lg font-medium mt-8">Medical Information</div>
+    <div class="flex flex-col mt-4 border-t border-b divide-y font-medium">
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Condition Description</div>
+            <div>{{learner.medicalCondition.Condition_Description}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Condition Treatment</div>
+            <div>{{learner.medicalCondition.Treatment}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Allergy Description</div>
+            <div>{{learner.allergy.Allergy_Description}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Allergy Treatment</div>
+            <div>{{learner.allergy.Treatment}}</div>
+        </div>
+    </div>
+        
+<hr>
+    <div class="bg-red-400">
+        <div class=" p-6 rounded-lg shadow-lg bg-white max-w-full border-warn-600 ">
+
+        <div class="text-lg font-medium mt-8">Emergency Contact</div>
+        <div class="flex flex-col mt-4 border-t border-b divide-y font-medium">
+          <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Name & Surname </div>
+            <div>{{learner.emergencyContact.Name}} {{learner.emergencyContact.Surname}}</div>
+        </div>
+
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Relationship</div>
+            <div>{{learner.emergencyContact.Relationship_To_Pupil}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Contact Number</div>
+            <div>{{learner.emergencyContact.Contact_Number}}</div>
+        </div>
+        <div class="flex items-center justify-between py-3">
+            <div class="text-secondary">Career</div>
+            <div>{{learner.emergencyContact.Career}}</div>
+        </div>
+        </div>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Upload Learner Report</mat-label>
+            <button mat-icon-button matPrefix (click)="f_input.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+            <input type="text" readonly matInput  [formControl]="display" />
+            <input
+            formControlName="filename"
+              type="file"
+              accept="image/png, image/gif, image/jpeg"
+              hidden
+              #f_input
+              (change)="handleFileInputChange(f_input.files)"
+            />
+            <mat-error>this field is required</mat-error>
+          </mat-form-field>
+        </div>
+        </div>
+
+
+
+
+    <!-- Actions -->
+    <div class="grid grid-cols-2 gap-4 w-full mt-8">
+        <button
+            class="flex-auto"
+            mat-flat-button
+            [color]="'primary'"   
+            (click)="downloadAsPDF()">
+            Download
+          
+        </button>
+        <button
+            class="flex-auto"
+            mat-stroked-button>
+            Edit
+        </button>
+    </div>
+
+</div>

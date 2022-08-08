@@ -1,0 +1,135 @@
+<div class="flex flex-col flex-auto w-full">
+
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+      <div class="flex items-center justify-between w-full">
+        <div>
+            <h2 class="text-3xl font-semibold tracking-tight leading-8">Sales</h2>
+            <div class="font-medium tracking-tight text-secondary"></div>
+        </div>
+    </div>
+    <br>
+      <div class="xl:col-span-2 flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto mx-6">
+            <table
+                class="w-full bg-transparent"
+                mat-table
+                matSort
+                [dataSource]="ProductsDataSource"
+                [trackBy]="trackByFn"
+                #recentProductsTable>
+
+                <!-- Transaction ID -->
+                <ng-container matColumnDef="SaleId">
+                    <th
+                        mat-header-cell
+                        mat-sort-header
+                        *matHeaderCellDef>
+                       Sale Id
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let data">
+                        <span class="pr-6 font-medium text-sm text-secondary whitespace-nowrap">
+                            {{data.Id}}
+                        </span>
+                    </td>
+                </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th
+                    mat-header-cell
+                    mat-sort-header
+                    *matHeaderCellDef>
+                    Date
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let Products">
+                    <span class="pr-6 whitespace-nowrap">
+                        <!-- {{Products.Time | time:'MMM:dd, y'}} -->
+                        {{Products.date | date}}
+
+                    </span>
+                </td>
+            </ng-container>
+                <!-- Name -->
+
+                <!-- Amount -->
+                <ng-container matColumnDef="parent">
+                    <th
+                        mat-header-cell
+                        mat-sort-header
+                        *matHeaderCellDef>
+                        Parent
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let Products">
+                        <span class="pr-6 font-medium whitespace-nowrap">
+                            {{Products.parent }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                              <!-- Amount -->
+                              <ng-container matColumnDef="Amount">
+                                <th
+                                    mat-header-cell
+                                    mat-sort-header
+                                    *matHeaderCellDef>
+                                   Total Amount
+                                </th>
+                                <td
+                                    mat-cell
+                                    *matCellDef="let Products">
+                                    <span class="pr-6 font-medium whitespace-nowrap">
+                                        {{Products.amount }}
+                                    </span>
+                                </td>
+                            </ng-container>
+
+      <!-- Amount -->
+      <ng-container matColumnDef="Actions">
+        <th
+            mat-header-cell
+            mat-sort-header
+            *matHeaderCellDef>
+            Actions
+        </th>
+        <td   mat-cell *matCellDef="let Products">
+            <button
+                mat-icon-button
+                (click)="viewDocument(Products)">
+                <mat-icon [svgIcon]="'heroicons_outline:document-add'"></mat-icon>
+            </button>
+        </td>
+    </ng-container>
+                <!-- Footer -->
+                <ng-container matColumnDef="recentOrdersTableFooter">
+                    <td
+                        class="py-6 px-0 border-0"
+                        mat-footer-cell
+                        *matFooterCellDef
+                        colspan="6">
+                        <!-- <button mat-stroked-button>See all transactions</button> -->
+                    </td>
+                </ng-container>
+
+                <tr
+                    mat-header-row
+                    *matHeaderRowDef="ProductsTableColumns"></tr>
+                <tr
+                    class="order-row h-16"
+                    mat-row
+                    *matRowDef="let row; columns: ProductsTableColumns;"></tr>
+                <tr
+                    class="h-16 border-0"
+                    mat-footer-row
+                    *matFooterRowDef="['recentOrdersTableFooter']"></tr>
+            </table>
+        </div>
+    </div>
+
+  </div>
+  </div>
+

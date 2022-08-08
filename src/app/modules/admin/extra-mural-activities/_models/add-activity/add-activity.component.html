@@ -1,0 +1,90 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+  <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"  [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+    <p class="text-lg font-medium">{{this.header}}</p>
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field
+            [ngClass]="formFieldHelpers"
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Description</mat-label>
+            <input formControlName="activityDescription" matInput>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+
+                <div *ngIf="submitted && f.activityDescription.errors" class="invalid-feedback">
+                  <mat-error  *ngIf="f.activityDescription.errors.required">activity Description is required</mat-error>
+              </div>
+        </mat-form-field>
+        <mat-form-field
+        [ngClass]="formFieldHelpers"
+        class="flex-auto gt-xs:pr-3">
+        <mat-label>Location</mat-label>
+        <input formControlName="activityLocation" matInput>
+        <mat-icon
+            class="icon-size-5"
+            matSuffix
+            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+
+            <div *ngIf="submitted && f.activityLocation.errors" class="invalid-feedback">
+              <mat-error  *ngIf="f.activityLocation.errors.required">activity Location is required</mat-error>
+          </div>
+    </mat-form-field>
+        <mat-form-field
+            [ngClass]="formFieldHelpers"
+            class="flex-auto gt-xs:pl-3">
+            <mat-label>Date</mat-label>
+            <input type="date"  formControlName="activityDate" matInput>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                <div *ngIf="submitted && f.activityDate.errors" class="invalid-feedback">
+                  <mat-error  *ngIf="f.activityDate.errors.required">activity date is required</mat-error>
+              </div>
+        </mat-form-field>
+    </div>
+    <div class="flex">
+        <mat-form-field
+            [ngClass]="formFieldHelpers"
+            class="fuse-mat-textarea flex-auto">
+            <mat-label>Time</mat-label>
+            <input type="time" formControlName="activityTime" matInput>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                <div *ngIf="submitted && f.activityTime.errors" class="invalid-feedback">
+                  <mat-error  *ngIf="f.activityTime.errors.required">activity time is required</mat-error>
+              </div>
+        </mat-form-field>
+    </div>
+    <div class="flex flex-col gt-md:flex-row">
+        <mat-form-field
+            [ngClass]="formFieldHelpers"
+            class="flex-auto gt-md:pr-3">
+            <mat-label>activity Type</mat-label>
+            <!-- <input matInput formControlName="activityType" > -->
+            <mat-select formControlName="activityType">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let activityType of activityTypes" [value]="activityType.id">{{activityType.Activity_Type_Description}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+
+                <div *ngIf="submitted && f.activityType.errors" class="invalid-feedback">
+                  <mat-error  *ngIf="f.activityType.errors.required">activity type is required</mat-error>
+              </div>
+        </mat-form-field>
+
+        <button
+        mat-flat-button
+        [color]="'primary'"
+        [disabled]="!activityForm.valid">
+        Save
+    </button>
+    </div>
+</form>
+  </div>

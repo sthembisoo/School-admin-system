@@ -1,0 +1,120 @@
+<div class="relative flex flex-col flex-auto min-w-0 overflow-hidden">
+
+    <!-- Main -->
+    <div class="flex flex-col flex-auto px-6 py-10 sm:px-16 sm:pt-18 sm:pb-20">
+
+        <!-- Activity feed -->
+
+        <div class="flex items-center justify-between w-full">
+
+            <form class="flex items-center">   
+                <label for="simple-search" class="sr-only">Search</label>
+                <div class="relative w-full">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <input type="text" matInput (keyup)="applyFilter($event)" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
+                </div>
+                
+            </form>
+
+            
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">fees</h2>
+                <div class="font-medium tracking-tight text-secondary">Keep track of fees</div>
+            </div>
+            <div class="flex items-center ml-6">
+                <button class="hidden sm:inline-flex" mat-stroked-button (click)="AddNewFee()">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:document-report'"></mat-icon>
+                    <span class="ml-2">Add New Fee</span>
+                </button>
+
+                <!-- Actions menu (visible on xs) -->
+                <div class="sm:hidden">
+                    <button [matMenuTriggerFor]="actionsMenu" mat-icon-button>
+                        <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+                    </button>
+                    <mat-menu #actionsMenu="matMenu">
+                        <button (click)="AddNewFee()" mat-menu-item>Add New Fee</button>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+        <br>
+        <ng-container>
+            <div class="xl:col-span-2 flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+                <div class="overflow-x-auto mx-6">
+                    <table class="w-full bg-transparent" mat-table matSort [dataSource]="feesDataSource"
+                        [trackBy]="trackByFn" #recentTransactionsTable>
+
+                        <!-- Transaction ID -->
+                        <ng-container matColumnDef="Grade">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                                Grade
+                            </th>
+                            <td mat-cell *matCellDef="let grade">
+                                <span class="pr-6 font-medium text-sm text-secondary whitespace-nowrap">
+                                    {{grade.Grade}}
+                                </span>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="PaymentType">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                                Payment Type
+                            </th>
+                            <td mat-cell *matCellDef="let payment">
+                                <span class="pr-6 whitespace-nowrap">
+                                    <!-- {{staff.Time | time:'MMM:dd, y'}} -->
+                                    {{payment.PaymentType}}
+
+                                </span>
+                            </td>
+                        </ng-container>
+
+                        <!-- StationaryAndWorkbook -->
+                        <ng-container matColumnDef="StationaryAndWorkbook">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                                Stationary And Workbook
+                            </th>
+                            <td mat-cell *matCellDef="let stationary">
+                                <span class="pr-6 font-medium whitespace-nowrap">
+                                    {{stationary.StationaryAndWorkbookFee }}
+                                </span>
+                            </td>
+                        </ng-container>
+
+                        <!-- Amount -->
+                        <ng-container matColumnDef="NewLearnerFee">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                                New Learner Fee
+                            </th>
+                            <td mat-cell *matCellDef="let learner">
+                                <span class="pr-6 font-medium whitespace-nowrap">
+                                    {{learner.NewLearnerFee }}
+                                </span>
+                            </td>
+                        </ng-container>
+
+                        <!-- Footer -->
+                        <ng-container matColumnDef="recentOrdersTableFooter">
+                            <td class="py-6 px-0 border-0" mat-footer-cell *matFooterCellDef colspan="6">
+                                <!-- <button mat-stroked-button>See all transactions</button> -->
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="feesTableColumns"></tr>
+                        <tr class="order-row h-16" mat-row *matRowDef="let row; columns: feesTableColumns;"></tr>
+                        <tr class="h-16 border-0" mat-footer-row *matFooterRowDef="['recentOrdersTableFooter']"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+                    </mat-paginator>
+
+                </div>
+            </div>
+        </ng-container>
+
+
+
+    </div>
+</div>

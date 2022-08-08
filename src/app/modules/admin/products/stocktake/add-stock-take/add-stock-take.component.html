@@ -1,0 +1,107 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+    <form
+        class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"
+        [formGroup]="ProductForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <p class="text-lg font-medium">Add Stocktake Session</p>
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-md:pr-3"
+            >
+                <mat-label>Product type</mat-label>
+                <!-- <input matInput formControlName="eventType" > -->
+                <mat-select formControlName="Product_type">
+                    <mat-option
+                        *ngFor="let product of producttype_data"
+                        [value]="product.name"
+                        >{{ product.name }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-md:pr-3"
+            >
+                <mat-label>Product Name</mat-label>
+                <!-- <input matInput formControlName="eventType" > -->
+                <mat-select formControlName="name">
+                    <mat-option
+                        *ngFor="let product of filterd_products"
+                        [value]="product"
+                        >{{ product.Name }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pl-3"
+            >
+                <mat-label>Current Quantity</mat-label>
+                <input
+                    type="number"
+                    formControlName="current_quantity"
+                    matInput
+                />
+            </mat-form-field>
+
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pl-3"
+            >
+                <mat-label>Revised Quantity</mat-label>
+                <input
+                    type="number"
+                    formControlName="revised_quantity"
+                    matInput
+                />
+                <div class="invalid-feedback">
+                    <!-- <mat-error  *ngIf="IsGreater">Write off quantity cannot be greater than available quantity</mat-error> -->
+                </div>
+            </mat-form-field>
+
+            <!-- <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-md:pr-3"
+            >
+                <mat-label>Staff member</mat-label>
+                 <input matInput formControlName="eventType" >
+                <mat-select formControlName="staffmember">
+                    <mat-option
+                        *ngFor="let product of staff_data"
+                        [value]="product.name"
+                        >{{ product.name }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field> -->
+
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pl-3"
+            >
+                <mat-label>Date:</mat-label>
+                <input type="date" formControlName="date" matInput />
+
+                <div
+                    *ngIf="submitted && f.date.errors"
+                    class="invalid-feedback"
+                >
+                    <mat-error>Date is required</mat-error>
+                </div>
+            </mat-form-field>
+        </div>
+
+        <div class="flex flex-col gt-md:flex-row">
+            <button
+                mat-flat-button
+                [color]="'primary'"
+                [disabled]="!ProductForm.valid"
+            >
+                Save
+            </button>
+        </div>
+    </form>
+</div>

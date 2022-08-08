@@ -1,0 +1,90 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+
+        <!-- <mat-drawer-container
+        class="flex-auto h-full bg-card dark:bg-transparent"
+        (backdropClick)="onBackdropClicked()">
+
+         Drawer
+        <mat-drawer
+            class="w-full md:w-160 dark:bg-gray-900"
+            [mode]="drawerMode"
+            [opened]="false"
+            [position]="'end'"
+            [disableClose]="true"
+            #matDrawer>
+            <router-outlet></router-outlet>
+        </mat-drawer>
+
+
+    <mat-drawer-content class="flex flex-col"> -->
+
+
+
+    <div class="flex flex-col flex-auto w-full">
+
+        <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+            <div class="flex items-center justify-between w-full">
+
+                <div>
+                    <h2 class="text-3xl font-semibold tracking-tight leading-8">Sales</h2>
+                    <div class="font-medium tracking-tight text-secondary"></div>
+                </div>
+
+                <div class="flex items-center ml-6">
+                    <button
+                    (click)="goToCart()"
+                    mat-raised-button
+                    class="hidden sm:inline-flex"
+                    mat-stroked-button >
+                    <mat-icon
+                        class="icon-size-5"
+                        svgIcon="heroicons_solid:shopping-cart"></mat-icon>
+                    <span class="ml-2">Cart ({{cartQuantity}})</span>
+                </button>
+                </div>
+                </div>
+
+    <div class="container" >
+		<div *ngFor="let pro of products; let i = index" >
+        <div class="card-{{i +1}} card-div" *ngIf="show">
+            <!-- <div class="like-icon-div">
+                <label for="card-{{count +1 }}-like" class="like-icon-div-child">
+                    <input type="checkbox" id="card-{{count +1 }}-like">
+                    <i class="far fa-heart heart-empty"></i>
+                    <i class="fas fa-heart heart-fill"></i>
+                </label>
+            </div> -->
+
+            <div class="gow-img-div img-div" >
+                <img src={{pro.pictureURL}} alt="god-of-war-figurine">
+            </div>
+            <div class="text-container">
+                <h2 class="item-name">{{pro.Name}}</h2>
+                <p class="date"> Number of products left:{{pro.Quantity}} </p>
+                <div class="pricing-and-cart">
+                    <div class="pricing">
+                        <!-- <p class="previous-price">$999</p> -->
+                        <p class="current-price">R {{pro.Cost}}</p>
+                    </div>
+
+                  <button
+				  (click)="selectProduct(pro,products[index])"
+				  >  <mat-icon svgIcon="iconsmind:add_cart"></mat-icon>
+                  Add to Cart
+			</button>
+                </div>
+            </div>
+        </div>
+
+	</div>
+    </div>
+    </div>
+</div>
+
+</div>
+</body>

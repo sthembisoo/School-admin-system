@@ -1,0 +1,72 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"  [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+      <p class="text-lg font-medium">{{this.header}}</p>
+      <div class="flex flex-col gt-xs:flex-row">
+
+          <mat-form-field 
+              [ngClass]="formFieldHelpers"
+              class="flex-auto gt-xs:pr-3">
+              <mat-label>Name</mat-label>
+              <input type="text"  formControlName="name"  matInput>
+          </mat-form-field>
+
+          <mat-form-field 
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-xs:pr-3">
+          <mat-label>Type</mat-label>
+          <input formControlName="type"  matInput>
+      </mat-form-field>
+
+                <mat-form-field 
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-xs:pl-3">
+          <mat-label>Quantity</mat-label>
+          <input type="number"  formControlName="prev_quantity" matInput>
+      </mat-form-field>
+
+
+
+          <mat-form-field 
+              [ngClass]="formFieldHelpers"
+              class="flex-auto gt-xs:pl-3">
+              <mat-label>Write off Quantity</mat-label>
+              <input  type="number"  formControlName="quantity" matInput>
+                  <div class="invalid-feedback">
+                    <mat-error  *ngIf="IsGreater">Write off quantity cannot be greater than available quantity</mat-error>
+                </div>
+          </mat-form-field>
+
+          <mat-form-field
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-xs:pl-3">
+          <mat-label>Date:</mat-label>
+          <input type="date"  formControlName="date" matInput>
+    
+              <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                <mat-error >Date is required</mat-error>
+            </div>
+      </mat-form-field>
+
+          <mat-form-field
+          [ngClass]="formFieldHelpers"
+          class="flex-auto gt-xs:pr-3">
+          <mat-label>Reason</mat-label>
+          <input formControlName="reason" matInput>
+              <div *ngIf="submitted && f.reason.errors" class="invalid-feedback">
+                <mat-error  *ngIf="f.reason.errors.required">reason is required</mat-error>
+            </div>
+      </mat-form-field>
+
+      </div>
+     
+      <div class="flex flex-col gt-md:flex-row">
+          <button
+          mat-flat-button
+          [color]="'primary'"
+        [disabled]="!ProductForm.valid" >
+          Save
+      </button>
+      </div>
+  </form>
+    </div>
+

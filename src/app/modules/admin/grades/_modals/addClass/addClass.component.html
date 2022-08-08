@@ -1,0 +1,88 @@
+<div class="flex flex-col flex-auto md:w-160 md:min-w-160 -m-6">
+  <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow
+    overflow-hidden" [formGroup]="classForm" (ngSubmit)="onSubmit()">
+    <h1 class="text-2xl font-medium">Add New Grade {{gradeInfo.grade}} Class</h1>
+    <hr>
+    <div class="flex flex-col gt-xs:flex-row">
+
+      <mat-form-field
+        [ngClass]="formFieldHelpers"
+        class="flex-auto gt-md:pr-3">
+        <mat-label>Class Type</mat-label>
+        <mat-select formControlName="Type">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let classType of classTypes" [value]="classType">{{classType}}</mat-option>
+        </mat-select>
+        <mat-icon
+          class="icon-size-5"
+          matSuffix
+          [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+
+        <div *ngIf="submitted && f.Type.errors" class="invalid-feedback">
+          <mat-error *ngIf="f.Type.errors.required">type required</mat-error>
+        </div>
+
+      </mat-form-field>
+
+      <mat-form-field
+      [ngClass]="formFieldHelpers"
+      class="flex-auto gt-md:pr-3">
+      <mat-label>Class Teacher</mat-label>
+      <mat-select formControlName="TeacherInChargeId">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{teacher.name}} {{teacher.surname}}</mat-option>
+      </mat-select>
+      <mat-icon
+        class="icon-size-5"
+        matSuffix
+        [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+
+      <div *ngIf="submitted && f.Type.errors" class="invalid-feedback">
+        <mat-error *ngIf="f.Type.errors.required">type required</mat-error>
+      </div>
+
+    </mat-form-field>
+
+      <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg
+        dark:bg-red-200 dark:text-red-800" role="alert" *ngIf="isExist">
+        <span class="font-medium">Note:</span> Class with that type already
+        Exists please choose another one
+      </div>
+      <mat-form-field
+        [ngClass]="formFieldHelpers"
+        class="flex-auto gt-md:pl-3">
+        <mat-label>Room</mat-label>
+        <input type="text" formControlName="Room" matInput>
+        <mat-icon
+          class="icon-size-5"
+          matSuffix
+          [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+        <div *ngIf="submitted && f.Room.errors" class="invalid-feedback">
+          <mat-error *ngIf="f.Room.errors.required">Event room is required</mat-error>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field
+        [ngClass]="formFieldHelpers"
+        class="flex-auto gt-md:pl-3">
+        <mat-label>Number of Learners</mat-label>
+        <input type="number" formControlName="NumberOfLearners" matInput>
+        <mat-icon
+          class="icon-size-5"
+          matSuffix
+          [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+        <div *ngIf="submitted && f.NumberOfLearners.errors"
+          class="invalid-feedback">
+          <mat-error *ngIf="f.NumberOfLearners.errors.required">number of
+            learners is required</mat-error>
+        </div>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        [color]="'primary'"
+        [disabled]="!classForm.valid && !isExist" type="submit">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
