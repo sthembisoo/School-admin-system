@@ -1,1 +1,1 @@
-https://deepmind-370.web.app/
+https://deepmind-370.web.app/sign-in
